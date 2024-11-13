@@ -30,7 +30,7 @@ for n in [12,13,14,15,16,17,21,22,23,24,32] do
     for g in gl do
         ord:=Order(g);
         if ord < Factorial(n)/2 then
-            total:=4;
+            estimate:=4;
             if n mod 2 = 0 then
                 s:=Int(n/2);
                 for k in [2..s] do
@@ -39,8 +39,8 @@ for n in [12,13,14,15,16,17,21,22,23,24,32] do
                     else
                         norb:=Size(OrbitsDomain(g, Combinations([1..n],k),OnSets));
                     fi;    
-                    total:=total+norb;
-                    if total > 2*n then
+                    estimate:=estimate+norb;
+                    if estimate > 2*n then
                         break;
                     fi;
             od;
@@ -48,14 +48,14 @@ for n in [12,13,14,15,16,17,21,22,23,24,32] do
                 s:=Int(Floor(Float(n/2)));
                 for k in [2..s] do
                     norb:=2*Size(OrbitsDomain(g, Combinations([1..n],k),OnSets));
-                    total:=total+norb;
-                    if total > 2*n then
+                    estimate:=estimate+norb;
+                    if estimate > 2*n then
                         break;
                     fi;
                 od;
             fi;
             
-            Print("n=",n,"      ",g,"     ","=>",total-2*n,"\n");
+            Print("n=",n,"      ",g,"     ","=>",estimate-2*n,"\n");
         fi;
     od;
 od;
